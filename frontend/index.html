@@ -13,6 +13,22 @@
     <main>
         <section id="product-list">
             <h2>Products</h2>
+            <div id="search-bar">
+                <input type="text" id="search-input" placeholder="Search by name, description or brand...">
+                <button id="search-btn">Search</button>
+                <button id="clear-btn">Clear</button>
+            </div>
+            <div id="pagination-bar" style="margin-bottom: 1em;">
+                <label>
+                    Page:
+                    <input type="number" id="page-input" value="1" min="1" style="width: 50px;">
+                </label>
+                <label>
+                    Limit:
+                    <input type="number" id="limit-input" value="10" min="10" max="100" step="10" style="width: 60px;">
+                </label>
+                <button id="pagination-btn">Go</button>
+            </div>
             <ul id="products"></ul>
         </section>
         <section id="product-details" style="display: none;">

@@ -4,6 +4,7 @@ from fastapi import status, Path, Query
 
 from app.db.database import LocalSession
 from app.models.product import Product
+from sqlalchemy import or_
 
 router = APIRouter(
     prefix="/products",
@@ -26,6 +27,8 @@ def get_all_products(
         result.append({
             'id': product.id,
             'name': product.name,
+            'brand': product.brand,
+            'description': product.description,
             'price': product.price
         })
 
@@ -33,20 +36,25 @@ def get_all_products(
 
 
 @router.get("/search")
-def serach_products(
+def search_products(
     search: str = Query(min_length=3, max_length=50),
 ):
-    
-    print(search)
     db = LocalSession()
-    
-    products = db.query(Product).filter(Product.name.ilike(f"%{search}%")).all()
+    products = db.query(Product).filter(
+        or_(
+            Product.name.ilike(f"%{search}%"),
+            Product.description.ilike(f"%{search}%"),
+            Product.brand.ilike(f"%{search}%")
+        )
+    ).all()
 
     result = []
     for product in products:
         result.append({
             'id': product.id,
             'name': product.name,
+            'brand': product.brand,
+            'description': product.description,
             'price': product.price
         })
 
