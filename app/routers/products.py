@@ -54,3 +54,4 @@ def get_one_product(product_id: int = Path(gt=0)):
 @router.put("/{product_id}")
 def update_one_product(product_id: int):
     return {}
+
