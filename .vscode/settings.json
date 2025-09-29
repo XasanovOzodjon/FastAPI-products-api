@@ -7,8 +7,8 @@
             "port": 5432,
             "driver": "PostgreSQL",
             "name": "test",
-            "database": "products_db",
-            "username": "djumanov"
+            "database": "hozircha1",
+            "username": "ozod"
         }
     ]
 }
